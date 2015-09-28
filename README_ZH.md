@@ -9,7 +9,7 @@ https://github.com/waylife/InfiniteViewPager
    - 平滑的滑到首页以及到尾页.
    - View重用，不用担心内存泄露
    - 支持指示器(对[ViewpagerIncicator](https://github.com/JakeWharton/ViewPagerIndicator)做了一定修改)
-   - 调用ViewPager.setCurrentItem()不卡顿, 比[常用的解放方案好](http://stackoverflow.com/a/17424525/1872596)
+   - 调用ViewPager.setCurrentItem()不卡顿, 比[常用的解决方案好](http://stackoverflow.com/a/17424525/1872596)
 
 ## 演示
 ![Sample demo](/ScreenCapture/preview_s2.gif)
