@@ -1,8 +1,8 @@
 # InfiniteViewpager
 https://github.com/waylife/InfiniteViewPager
 
-[中文](/README_ZH.MD)
-[English](/README.MD)
+[中文](/README_ZH.md)
+[English](/README.md)
 ## 功能
    - 自动滑动到下一页
    - 平滑的滑到首页以及到尾页.
@@ -11,10 +11,10 @@ https://github.com/waylife/InfiniteViewPager
    - 调用ViewPager.setCurrentItem()不卡顿, 比[常用的解放方案好](http://stackoverflow.com/a/17424525/1872596)
 
 ## 演示
-    Demo
-    ![Sample demo](/ScreenCapture/preview_s2.gif)
-    搜狗市场(http://app.sogou.com/detail/311558) (游戏banner)
-    ![Appmall game banner](/ScreenCapture/preview_s1.gif)
+Demo
+![Sample demo](/ScreenCapture/preview_s2.gif)
+搜狗市场(http://app.sogou.com/detail/311558) (游戏banner)
+![Appmall game banner](/ScreenCapture/preview_s1.gif)
 
 ## 使用
 几乎跟viewpager一样. 以下是步骤.

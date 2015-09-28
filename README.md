@@ -1,8 +1,8 @@
 # InfiniteViewpager
 https://github.com/waylife/InfiniteViewPager
 
-[中文](/README_ZH.MD)
-[English](/README.MD)
+[中文](/README_ZH.md)
+[English](/README.md)
 ## Function
    - Automatically scroll to next page
    - Smoothly scrolls from the end page to the first page,so does first to end.
@@ -11,10 +11,10 @@ https://github.com/waylife/InfiniteViewPager
    - Fluid when invoking ViewPager.setCurrentItem(), better than [the common solution](http://stackoverflow.com/a/17424525/1872596)
 
 ## Preview
-    Demo
-    ![Sample demo](/ScreenCapture/preview_s2.gif)
-    Applied in [Appmall](http://app.sogou.com/detail/311558) (Game Banner)
-    ![Appmall game banner](/ScreenCapture/preview_s1.gif)
+Demo
+![Sample demo](/ScreenCapture/preview_s2.gif)
+Applied in [Appmall](http://app.sogou.com/detail/311558) (Game Banner)
+![Appmall game banner](/ScreenCapture/preview_s1.gif)
 
 ## Usage
 Almost the same as the viewpager. Below are some steps.
