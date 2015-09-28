@@ -13,6 +13,7 @@ https://github.com/waylife/InfiniteViewPager
 ## Preview
 Demo
 ![Sample demo](/ScreenCapture/preview_s2.gif)
+  
 Applied in [Appmall](http://app.sogou.com/detail/311558) (Game Banner)
 ![Appmall game banner](/ScreenCapture/preview_s1.gif)
 

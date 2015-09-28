@@ -13,6 +13,7 @@ https://github.com/waylife/InfiniteViewPager
 ## 演示
 Demo
 ![Sample demo](/ScreenCapture/preview_s2.gif)
+
 搜狗市场(http://app.sogou.com/detail/311558) (游戏banner)
 ![Appmall game banner](/ScreenCapture/preview_s1.gif)
 
