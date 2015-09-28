@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:id="@+id/rl_1">
+
+        <com.zanlabs.widget.infiniteviewpager.InfiniteViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible" />
+
+        <com.zanlabs.widget.infiniteviewpager.indicator.LinePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:fillColor="#e3ffc7"
+            app:pageColor="#5fff65" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_2"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp">
+
+        <com.zanlabs.widget.infiniteviewpager.InfiniteViewPager
+            android:id="@+id/viewpager2"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible" />
+
+        <com.zanlabs.widget.infiniteviewpager.indicator.CirclePageIndicator
+            android:id="@+id/indicator2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:fillColor="#e3ffc7"
+            app:pageColor="#5fff65" />
+    </RelativeLayout>
+</LinearLayout>

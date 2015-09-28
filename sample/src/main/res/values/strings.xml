@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">InfiniteViewPager Demo</string>
+
+    <string name="hello_world">InfiniteViewPager Demo</string>
+    <string name="action_settings">Github</string>
+</resources>
