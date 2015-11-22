@@ -103,5 +103,8 @@ You need to overide the getView and getItemCount(not getCount) mehtod.
 
 More You can refer to the sample project.
 
+## Thanks to
+- https://github.com/JakeWharton/salvage
+
 ## License
 The MIT License.

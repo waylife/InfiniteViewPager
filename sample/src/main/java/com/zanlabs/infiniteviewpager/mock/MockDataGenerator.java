@@ -29,4 +29,25 @@ public class MockDataGenerator {
         }
         return list;
     }
+
+    public static List<PagerItem> getViewPagerData2(){
+        List<PagerItem> list=new ArrayList<>();
+        PagerItem item=null;
+        for(int i=0;i<5;i++){
+            item=new PagerItem();
+            item.setDesc("Description:"+i);
+            item.setName("Name:"+i);
+            item.setPosition(i);
+            int index=i%3;
+            if(index==1){
+                item.setImageUrl("http://p3.123.sogoucdn.com/imgu/2015/09/20150924151622_720.jpg");
+            }else if(index==2){
+                item.setImageUrl("http://p8.123.sogoucdn.com/imgu/2015/09/20150924151358_518.png");
+            }else{
+                item.setImageUrl("http://p6.123.sogoucdn.com/imgu/2015/09/20150921184131_208.png");
+            }
+            list.add(item);
+        }
+        return list;
+    }
 }

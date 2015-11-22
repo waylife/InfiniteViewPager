@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -39,8 +40,8 @@ public class MainActivity extends FragmentActivity {
         mLineIndicator.setViewPager(mViewPager);
 
         MockPagerAdapter pagerAdapter2 = new MockPagerAdapter(this);
-        pagerAdapter2.setDataList(MockDataGenerator.getViewPagerData());
-        mViewPager2.setAdapter(pagerAdapter);
+        pagerAdapter2.setDataList(MockDataGenerator.getViewPagerData2());
+        mViewPager2.setAdapter(pagerAdapter2);
         mViewPager2.setAutoScrollTime(10000);
         mViewPager2.startAutoScroll();
         mCircleIndicator.setViewPager(mViewPager2);

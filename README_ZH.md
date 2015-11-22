@@ -103,5 +103,8 @@ https://github.com/waylife/InfiniteViewPager
 
 更多可以参考sample项目.
 
+## Thanks to
+- https://github.com/JakeWharton/salvage
+
 ## License
 The MIT License.

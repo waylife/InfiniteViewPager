@@ -15,8 +15,11 @@ import android.view.MotionEvent;
  * https://github.com/waylife/InfiniteViewPager
  */
 public class InfiniteViewPager extends ViewPager {
+    private final static boolean DEBUG = false;
+
     public static void log(String msg) {
-//        Log.i("InfiniteViewPager", msg);
+        if (DEBUG)
+            Log.i("InfiniteViewPager", msg);
     }
 
 
@@ -64,7 +67,7 @@ public class InfiniteViewPager extends ViewPager {
                     msg.arg1 = position;
                     mHandler.sendMessageDelayed(msg, 500);
                     return;
-                }else {
+                } else {
                     log("position:" + position + "->" + FakePositionHelper.getRealPositon(InfiniteViewPager.this, position));
                 }
                 if (mOnPageChangeListener != null) {
@@ -220,6 +223,7 @@ public class InfiniteViewPager extends ViewPager {
         if (!mIsInfinitePagerAdapter) {
             throw new IllegalArgumentException("Currently, only InfinitePagerAdapter is supported");
         }
+        setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, 0), false);
     }
 
     @Override
@@ -244,6 +248,8 @@ public class InfiniteViewPager extends ViewPager {
 
         public static int getRealFromFake(InfiniteViewPager viewPager, int fake) {
             int realAdapterSize = viewPager.getAdapterSize() / MULTIPLIER;
+            if (realAdapterSize == 0)
+                return 0;
             fake = fake % realAdapterSize;//ensure it
             int currentReal = viewPager.getFakeCurrentItem();
             int real = fake + (currentReal - currentReal % realAdapterSize);//set to the target level
@@ -252,6 +258,8 @@ public class InfiniteViewPager extends ViewPager {
 
         public static int getFakeFromReal(InfiniteViewPager viewPager, int real) {
             int realAdapterSize = viewPager.getAdapterSize() / MULTIPLIER;
+            if (realAdapterSize == 0)
+                return 0;
             return real % realAdapterSize;
         }
 
@@ -284,6 +292,8 @@ public class InfiniteViewPager extends ViewPager {
 
         public static int getRealPositon(InfiniteViewPager viewPager, int position) {
             int realAdapterSize = getRealAdapterSize(viewPager);
+            if (realAdapterSize == 0)
+                return 0;
             int startPostion = getStartPosition(viewPager);
             int endPosition = getEndPosition(viewPager);
             if (position < startPostion) {
