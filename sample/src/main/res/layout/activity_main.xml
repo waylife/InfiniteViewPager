@@ -49,7 +49,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:fillColor="#e3ffc7"
-            app:pageColor="#5fff65" />
+            app:fillColor="#55703a"
+            app:pageColor="#18b11e" />
     </RelativeLayout>
 </LinearLayout>

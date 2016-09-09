@@ -24,6 +24,8 @@ public abstract class InfinitePagerAdapter extends RecyclingPagerAdapter {
     @Deprecated
 
     protected View getViewInternal(int position, View convertView, ViewGroup container) {
+        if(getItemCount()==0)
+            return null;
         return getView(position % getItemCount(), convertView, container);
     }
 
