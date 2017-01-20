@@ -38,7 +38,7 @@ public class InfiniteViewPager extends ViewPager {
     private long mDelay = DEFAULT_AUTO_SCROLL_INTERVAL;
 
     private MyHandler mHandler;
-    private class MyHandler extends Handler {
+    private static class MyHandler extends Handler {
         private WeakReference<InfiniteViewPager> ref;
 
         public MyHandler(InfiniteViewPager ref) {
