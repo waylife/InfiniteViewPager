@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * Created by RxRead on 2015/9/24.
@@ -26,7 +28,6 @@ public class InfiniteViewPager extends ViewPager {
     private static final long DEFAULT_AUTO_SCROLL_INTERVAL = 3000;//3s
     private static final int MSG_AUTO_SCROLL = 1;
     private static final int MSG_SET_PAGE = 2;
-    private Handler mHandler;
     private boolean mAutoScroll;
     private boolean mIsInfinitePagerAdapter;
     /**
@@ -35,6 +36,19 @@ public class InfiniteViewPager extends ViewPager {
     private boolean mTouchedWhenAutoScroll;
     private OnPageChangeListener mOnPageChangeListener;
     private long mDelay = DEFAULT_AUTO_SCROLL_INTERVAL;
+
+    private MyHandler mHandler;
+    private class MyHandler extends Handler {
+        private WeakReference<InfiniteViewPager> ref;
+
+        public MyHandler(InfiniteViewPager ref) {
+            this.ref = new WeakReference<>(ref);
+        }
+
+        public WeakReference<InfiniteViewPager> getRef() {
+            return ref;
+        }
+    }
 
     public InfiniteViewPager(Context context) {
         this(context, null);
@@ -92,17 +106,19 @@ public class InfiniteViewPager extends ViewPager {
             }
         });
         //
-        mHandler = new Handler() {
+        mHandler = new MyHandler(this) {
             @Override
             public void dispatchMessage(Message msg) {
-                switch (msg.what) {
-                    case MSG_AUTO_SCROLL:
-                        setItemToNext();
-                        sendDelayMessage();
-                        break;
-                    case MSG_SET_PAGE:
-                        setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
-                        break;
+                if (getRef() != null) {
+                    switch (msg.what) {
+                        case MSG_AUTO_SCROLL:
+                            setItemToNext();
+                            sendDelayMessage();
+                            break;
+                        case MSG_SET_PAGE:
+                            setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
+                            break;
+                    }
                 }
             }
         };
