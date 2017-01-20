@@ -48,6 +48,14 @@ public class InfiniteViewPager extends ViewPager {
         public WeakReference<InfiniteViewPager> getRef() {
             return ref;
         }
+
+        @Override
+        public void handleMessage(Message msg) {
+            InfiniteViewPager o = ref.get();
+            if (o != null) {
+                o.handlerMessage(msg);
+            }
+        }
     }
 
     public InfiniteViewPager(Context context) {
@@ -57,6 +65,18 @@ public class InfiniteViewPager extends ViewPager {
     public InfiniteViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    public void handlerMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_AUTO_SCROLL:
+                setItemToNext();
+                sendDelayMessage();
+                break;
+            case MSG_SET_PAGE:
+                setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
+                break;
+        }
     }
 
     void init() {
@@ -106,22 +126,7 @@ public class InfiniteViewPager extends ViewPager {
             }
         });
         //
-        mHandler = new MyHandler(this) {
-            @Override
-            public void dispatchMessage(Message msg) {
-                if (getRef() != null) {
-                    switch (msg.what) {
-                        case MSG_AUTO_SCROLL:
-                            setItemToNext();
-                            sendDelayMessage();
-                            break;
-                        case MSG_SET_PAGE:
-                            setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
-                            break;
-                    }
-                }
-            }
-        };
+        mHandler = new MyHandler(this);
     }
 
 
