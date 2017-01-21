@@ -9,6 +9,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * Created by RxRead on 2015/9/24.
@@ -26,7 +28,6 @@ public class InfiniteViewPager extends ViewPager {
     private static final long DEFAULT_AUTO_SCROLL_INTERVAL = 3000;//3s
     private static final int MSG_AUTO_SCROLL = 1;
     private static final int MSG_SET_PAGE = 2;
-    private Handler mHandler;
     private boolean mAutoScroll;
     private boolean mIsInfinitePagerAdapter;
     /**
@@ -36,6 +37,27 @@ public class InfiniteViewPager extends ViewPager {
     private OnPageChangeListener mOnPageChangeListener;
     private long mDelay = DEFAULT_AUTO_SCROLL_INTERVAL;
 
+    private MyHandler mHandler;
+    private static class MyHandler extends Handler {
+        private WeakReference<InfiniteViewPager> ref;
+
+        public MyHandler(InfiniteViewPager ref) {
+            this.ref = new WeakReference<>(ref);
+        }
+
+        public WeakReference<InfiniteViewPager> getRef() {
+            return ref;
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            InfiniteViewPager o = ref.get();
+            if (o != null) {
+                o.handlerMessage(msg);
+            }
+        }
+    }
+
     public InfiniteViewPager(Context context) {
         this(context, null);
     }
@@ -43,6 +65,18 @@ public class InfiniteViewPager extends ViewPager {
     public InfiniteViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
+    }
+
+    public void handlerMessage(Message msg) {
+        switch (msg.what) {
+            case MSG_AUTO_SCROLL:
+                setItemToNext();
+                sendDelayMessage();
+                break;
+            case MSG_SET_PAGE:
+                setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
+                break;
+        }
     }
 
     void init() {
@@ -92,20 +126,7 @@ public class InfiniteViewPager extends ViewPager {
             }
         });
         //
-        mHandler = new Handler() {
-            @Override
-            public void dispatchMessage(Message msg) {
-                switch (msg.what) {
-                    case MSG_AUTO_SCROLL:
-                        setItemToNext();
-                        sendDelayMessage();
-                        break;
-                    case MSG_SET_PAGE:
-                        setFakeCurrentItem(FakePositionHelper.getRealPositon(InfiniteViewPager.this, msg.arg1), false);
-                        break;
-                }
-            }
-        };
+        mHandler = new MyHandler(this);
     }
 
 
